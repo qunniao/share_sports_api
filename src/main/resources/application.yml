@@ -1,0 +1,65 @@
+spring:
+    jmx:
+      enabled: false
+    jpa:
+        hibernate:
+        #数据库生成模式 none为不操作
+          ddl-auto: none
+          naming:
+            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        show-sql: true
+        properties:
+          hibernate:
+            enable_lazy_load_no_trans: true
+            database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        open-in-view: true
+
+    jackson:
+          date-format: yyyy-MM-dd HH:mm:ss
+          time-zone: GMT+8
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        druid:
+          filters: stat
+          driver-class-name: com.mysql.cj.jdbc.Driver
+#          生产数据源
+          url: jdbc:mysql://47.110.34.1:3306/gymnasium?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=CTT
+          username: root
+          password: zc24615.
+#         测试数据源
+#          url: jdbc:mysql://47.96.31.157:3306/gymnasium?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=CTT
+#          username: root
+#          password: uAiqwVwjJ8-g
+#         本地数据源
+#          url: jdbc:mysql://localhost:3306/gymnasium?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=CTT
+#          username: root
+#          password: 123
+          initial-size: 1
+          min-idle: 1
+          max-active: 20
+          max-wait: 60000
+          time-between-eviction-runs-millis: 60000
+          min-evictable-idle-time-millis: 300000
+          validation-query: SELECT 'x'
+          test-while-idle: true
+          test-on-borrow: false
+          test-on-return: false
+          pool-prepared-statements: false
+          max-pool-prepared-statement-per-connection-size: 20
+#logging:
+#  config: classpath:logback.xml
+#  level:
+#    com.gymnasium: info
+#    com.gymnasium.Dao: trace
+logging:
+  config: classpath:logback-spring.xml
+log:
+  level:
+    # 控制台输出级别
+    root: info
+    # 文件名称
+    my: debug
+  file: logs/gymnasium/debug
+  maxsize: 30MB
+jwt:
+  tokenExpireTime: 1
